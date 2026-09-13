@@ -26,7 +26,6 @@ const createPayment = async (req, res) => {
       "9199124294",
     );
 
-    console.log(cashFreeOrder);
 
     await Orders.create({
       orderId,
@@ -52,6 +51,8 @@ const createPayment = async (req, res) => {
 
 const verifyPayment = async (req, res) => {
   try {
+    console.log("reachedd herrr......................")
+
     const { orderId } = req.query;
 
     const order = await Orders.findOne({
