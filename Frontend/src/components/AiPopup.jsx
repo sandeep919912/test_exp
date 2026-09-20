@@ -56,7 +56,7 @@ const AiPopup = ({ setShowAiPopup }) => {
         </div>
 
         {/* Chat area */}
-        <div className="h-[350px] p-5 overflow-y-auto bg-gray-50">
+        <div className="h-87.5 p-5 overflow-y-auto bg-gray-50">
 
 
           {/* Example user message */}

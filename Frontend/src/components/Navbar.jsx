@@ -112,17 +112,17 @@ export const Navbar = () => {
                 <button
                   onClick={handleDownload}
                   disabled={loading}
-                  className="w-[160px] h-[36px] flex items-center justify-center bg-blue-700 hover:bg-blue-800 transition duration-150 rounded text-white font-semibold cursor-pointer disabled:opacity-70"
+                  className="w-40 h-9 flex items-center justify-center bg-blue-700 hover:bg-blue-800 transition duration-150 rounded text-white font-semibold cursor-pointer disabled:opacity-70"
                 >
                   {loading ? (
-                    <div className="w-[20px] h-[20px] border-2 border-gray-300 border-t-white rounded-full animate-spin"></div>
+                    <div className="w-5 h-5 border-2 border-gray-300 border-t-white rounded-full animate-spin"></div>
                   ) : (
                     <h3>Download EP Report</h3>
                   )}
                 </button>
                 <button
                   onClick={() => setShowPopup(true)}
-                  className="w-[110px] text-center py-1 bg-green-700 hover:bg-green-800 transition duration-150 rounded text-white font-semibold cursor-pointer"
+                  className="w-27.5 text-center py-1 bg-green-700 hover:bg-green-800 transition duration-150 rounded text-white font-semibold cursor-pointer"
                 >
                   LeaderBoard
                 </button>
@@ -134,7 +134,7 @@ export const Navbar = () => {
             ) : (
               <button
                 onClick={handlePremium}
-                className="w-[110px] text-center py-1 bg-yellow-700 hover:bg-yellow-800 transition duration-150 rounded text-white font-semibold cursor-pointer"
+                className="w-27.5 text-center py-1 bg-yellow-700 hover:bg-yellow-800 transition duration-150 rounded text-white font-semibold cursor-pointer"
               >
                 Get Premium
               </button>
@@ -142,7 +142,7 @@ export const Navbar = () => {
           ) : (
             <Link
               to="/login"
-              className="w-[100px] text-center py-1 bg-blue-600 hover:bg-blue-700 transition duration-150 rounded text-white font-semibold cursor-pointer"
+              className="w-25 text-center py-1 bg-blue-600 hover:bg-blue-700 transition duration-150 rounded text-white font-semibold cursor-pointer"
             >
               Login
             </Link>
@@ -151,7 +151,7 @@ export const Navbar = () => {
       </div>
 
       {showPopup ? (
-        <div className="absolute w-[100%] bg-black/30 backdrop-blur-sm h-2/2  z-10  flex justify-center items-center">
+        <div className="absolute w-full bg-black/30 backdrop-blur-sm h-2/2  z-10  flex justify-center items-center">
           <Popup setShowPopup={setShowPopup} />
         </div>
       ) : null}

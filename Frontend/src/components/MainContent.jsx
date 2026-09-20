@@ -281,7 +281,7 @@ const MainContent = () => {
                 {loading ? (
                   <div className="flex gap-1">
                     <p>AI is thinking please wait</p>
-                    <div className="w-[20px] h-[20px] border-2 border-gray-300 border-t-white rounded-full animate-spin"></div>
+                    <div className="w-5 h-5 border-2 border-gray-300 border-t-white rounded-full animate-spin"></div>
                   </div>
                 ) : null}
               </label>
@@ -357,7 +357,7 @@ const MainContent = () => {
           {/* TABLE */}
           <div className="overflow-x-auto h-[300.67px] overflow-auto">
             {expenses && expenses.length > 0 ? (
-              <table className="w-full min-w-[650px]">
+              <table className="w-full min-w-162.5">
                 <thead>
                   <tr className="bg-slate-50 border-b border-slate-200">
                     <th className="px-5 py-4 text-left text-xs font-semibold text-slate-500 uppercase">
@@ -394,12 +394,12 @@ const MainContent = () => {
                         </td>
 
                         <td className="px-5 py-4">
-                          <div className="relative group max-w-[200px]">
+                          <div className="relative group max-w-50">
                             <div className="truncate cursor-pointer text-sm font-medium text-slate-700">
                               {expense.title}
                             </div>
 
-                            <div className="absolute left-0 bottom-full mb-2 hidden group-hover:block bg-slate-800 text-white text-xs px-3 py-2 rounded-lg whitespace-normal w-max max-w-[300px] z-20">
+                            <div className="absolute left-0 bottom-full mb-2 hidden group-hover:block bg-slate-800 text-white text-xs px-3 py-2 rounded-lg whitespace-normal w-max max-w-75 z-20">
                               {expense.title}
                             </div>
                           </div>

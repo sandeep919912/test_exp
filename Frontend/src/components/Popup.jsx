@@ -27,7 +27,7 @@ const Popup = ({setShowPopup}) => {
   
 
   return (
-    <div className="w-full fixed relative max-w-md mx-auto h-[500px] overflow-auto bg-white rounded-xl shadow-md p-5">
+    <div className="w-full fixed max-w-md mx-auto h-125 overflow-auto bg-white rounded-xl shadow-md p-5">
        <button
       onClick={() => setShowPopup(false)}
       className="absolute top-3 right-3 text-gray-500 hover:text-gray-800 cursor-pointer"
