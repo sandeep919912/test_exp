@@ -27,9 +27,11 @@ app.use("/api/gemini" , aiRouter)
 app.use("/api/reset-pass" , resetRouter)
 app.use("/api/reports" , reportRouter)
 
+
+const PORT = process.env.PORT
 sequelize.sync().then(() => {
-    app.listen(3000 , (err) => {
-        console.log("Server is running on port 3000");
+    app.listen(PORT , (err) => {
+        console.log(`Server is running on port ${PORT}`);
     })
 }).catch((err) => {
     console.error("Error connecting to the database:", err);
