@@ -30,17 +30,14 @@ const createOrder = async (
         customer_phone: customerPhone,
       },
       order_meta: {
-        return_url: `http://localhost:3000/api/payment/verify?orderId=${orderId}`
+        return_url: `${process.env.BACKEND_URL}/payment/verify?orderId=${orderId}`
       },
       order_expiry_time: formattedExpiryDate,
     };
-    
-    console.log("therreee-----------------------------------------")
+
     const response = await cashfree.PGCreateOrder(request);
-    console.log("herrrrrrrr-----------------------------------------")
     return response.data;
   } catch (error) {
-    console.error("Error creating order:", error);
     throw error;
   }
 };
@@ -49,10 +46,8 @@ const createOrder = async (
 const getPaymentStatus = async (orderId) => {
     try {
         const response = await cashfree.PGOrderFetchPayments(orderId);
-        console.log("responsee of get payment status ..." , response.data)
         return response.data;
     } catch (error) {
-        console.error("Error fetching payment status:", error);
         throw error;
     }
 }

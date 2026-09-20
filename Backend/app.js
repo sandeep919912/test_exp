@@ -8,6 +8,7 @@ import paymentRouter from "./routes/payment.route.js"
 import leaderBoardRouter from "./routes/leaderboard.route.js"
 import aiRouter from "./routes/genai.route.js"
 import resetRouter from "./routes/reset_pass.route.js"
+import reportRouter from "./routes/reports.route.js"
 
 import "./models/index.js"
 
@@ -24,6 +25,7 @@ app.use("/api/payment" , paymentRouter)
 app.use("/api/leaderboard" , leaderBoardRouter)
 app.use("/api/gemini" , aiRouter)
 app.use("/api/reset-pass" , resetRouter)
+app.use("/api/reports" , reportRouter)
 
 sequelize.sync().then(() => {
     app.listen(3000 , (err) => {

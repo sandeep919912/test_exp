@@ -81,7 +81,7 @@ const verifyFPrequest = async (req, res) => {
     }
 
     return res.redirect(
-      `http://localhost:5173/reset-password/${id}`
+      `${process.env.FRONTEND_URL}/reset-password/${id}`
     );
 
   } catch (error) {
@@ -94,8 +94,6 @@ const resetPassword = async (req, res) => {
   try {
     const { id } = req.params;
     const { password } = req.body;
-
-    console.log(password)
 
     const validReq = await ResetPass.findOne({
       where: {

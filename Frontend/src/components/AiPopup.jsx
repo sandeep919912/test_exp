@@ -11,7 +11,7 @@ const AiPopup = ({ setShowAiPopup }) => {
     const handleSend = async () => {
         try {
             setLoading(true)
-            const res = await axios.post("http://localhost:3000/api/gemini/ask" , {prompt})
+            const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/gemini/ask`, {prompt})
             setResponse(res.data)
         } catch (error) {
             alert(error.message)

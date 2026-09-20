@@ -3,7 +3,6 @@ import jwt from "jsonwebtoken"
 const authenticateUser = (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
-    console.log("authHeader............." , authHeader)
 
     if (!authHeader) {
       return res.status(401).json({
@@ -24,16 +23,15 @@ const authenticateUser = (req, res, next) => {
       process.env.SECRET_KEY
     );
 
-    console.log("decooooooooodeedddd" , decoded)
     req.user = decoded;
 
     next();
 
   } catch (error) {
-    console.log(error);
 
     return res.status(401).json({
       message: "Invalid or expired token",
+      token:"Invalid"
     });
   }
 };

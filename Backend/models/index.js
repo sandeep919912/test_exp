@@ -2,6 +2,7 @@ import User from "./user.model.js"
 import Expense from "./expense.model.js"
 import Orders from "./order.model.js"
 import ResetPass from "./reset_pass.model.js"
+import Reports from "./reports.model.js"
 
 
 User.hasMany(Expense , {
@@ -29,9 +30,18 @@ ResetPass.belongsTo(User,{
     foreignKey:"userId"
 })
 
+User.hasMany(Reports, {
+    foreignKey:"userId"
+})
+
+Reports.belongsTo(User,{
+    foreignKey:"userId"
+})
+
 export {
     User,
     Expense,
     Orders,
-    ResetPass
+    ResetPass,
+    Reports
 }

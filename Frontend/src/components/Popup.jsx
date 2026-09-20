@@ -11,7 +11,7 @@ const Popup = ({setShowPopup}) => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        "http://localhost:3000/api/leaderboard/get-leaderboard",
+        `${import.meta.env.VITE_BACKEND_URL}/leaderboard/get-leaderboard`,
       );
 
       console.log(response.data);

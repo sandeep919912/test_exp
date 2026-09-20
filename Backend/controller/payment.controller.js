@@ -9,7 +9,6 @@ const createPayment = async (req, res) => {
     const user = await User.findByPk(userId);
 
     if (!user) {
-      console.log("user not found");
       return res.status(404).json({ message: "user not found" });
     }
 
@@ -44,14 +43,12 @@ const createPayment = async (req, res) => {
       paymentSessionId: cashFreeOrder.payment_session_id,
     });
   } catch (error) {
-    console.log("error in payment controller ................ ", error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
 const verifyPayment = async (req, res) => {
   try {
-    console.log("reachedd herrr......................")
 
     const { orderId } = req.query;
 
@@ -107,7 +104,6 @@ const verifyPayment = async (req, res) => {
       message: "Payment is pending",
     });
   } catch (error) {
-    console.log("Error in verify payment:", error);
     return res.status(500).json({
       message: "Internal Server Error",
     });

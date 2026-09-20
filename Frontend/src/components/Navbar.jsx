@@ -8,15 +8,16 @@ import { useNavigate } from "react-router-dom";
 export const Navbar = () => {
   const [token, setToken] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const checkLogin = () => {
     const isToken = localStorage.getItem("token");
     if (isToken) {
       setToken(true);
-    }else{
-      navigate("/login")
+    } else {
+      navigate("/login");
     }
   };
 
@@ -24,7 +25,7 @@ export const Navbar = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "http://localhost:3000/api/payment/create-order",
+        `${import.meta.env.VITE_BACKEND_URL}/payment/create-order`,
         {},
         {
           headers: {
@@ -46,18 +47,12 @@ export const Navbar = () => {
         redirectTarget: "_modal",
       });
 
-      // not working from here
-      console.log("problem....");
-
       const verifyResponse = await axios.get(
-        `http://localhost:3000/api/payment/verify?orderId=${data.orderId}`,
+        `${import.meta.env.VITE_BACKEND_URL}/payment/verify?orderId=${data.orderId}`,
       );
-
-      console.log("here i m");
 
       if (verifyResponse.data.status === "SUCCESSFUL") {
         alert("Payment successful! You are now a premium user.");
-        localStorage.setItem("isPremium", "true");
       }
 
       console.log("Payment verification result:", verifyResponse.data);
@@ -72,7 +67,6 @@ export const Navbar = () => {
 
   const checkPremium = () => {
     const isPremium = localStorage.getItem("isPremium");
-    // console.log(isPremium);
 
     if (isPremium) {
       setPremium(true);
@@ -84,8 +78,26 @@ export const Navbar = () => {
     checkPremium();
   }, []);
 
+  const handleDownload = async () => {
+    try {
+      setLoading(true);
+      const token = localStorage.getItem("token");
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/expense/report`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(res.data);
 
-  // getAllExpences
+      
+      window.open(res.data, "_blank");
+    } catch (error) {
+      console.log(error);
+      alert(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="flex w-full">
@@ -97,6 +109,17 @@ export const Navbar = () => {
           {token ? (
             premium ? (
               <div className="flex gap-5 items-center">
+                <button
+                  onClick={handleDownload}
+                  disabled={loading}
+                  className="w-[160px] h-[36px] flex items-center justify-center bg-blue-700 hover:bg-blue-800 transition duration-150 rounded text-white font-semibold cursor-pointer disabled:opacity-70"
+                >
+                  {loading ? (
+                    <div className="w-[20px] h-[20px] border-2 border-gray-300 border-t-white rounded-full animate-spin"></div>
+                  ) : (
+                    <h3>Download EP Report</h3>
+                  )}
+                </button>
                 <button
                   onClick={() => setShowPopup(true)}
                   className="w-[110px] text-center py-1 bg-green-700 hover:bg-green-800 transition duration-150 rounded text-white font-semibold cursor-pointer"
@@ -129,7 +152,7 @@ export const Navbar = () => {
 
       {showPopup ? (
         <div className="absolute w-[100%] bg-black/30 backdrop-blur-sm h-2/2  z-10  flex justify-center items-center">
-          <Popup setShowPopup={setShowPopup}/>
+          <Popup setShowPopup={setShowPopup} />
         </div>
       ) : null}
     </div>

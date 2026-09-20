@@ -7,7 +7,6 @@ const signUp = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
-    console.log(name, email, password);
 
     const hashPassword = await bcrypt.hash(password, 10);
 
@@ -19,7 +18,6 @@ const signUp = async (req, res) => {
 
     res.status(201).json({ message: "user signup successfully" });
   } catch (error) {
-    console.log(error);
     res.status(500).json({ message: "internal server error" });
   }
 };
@@ -50,7 +48,6 @@ const login = async (req, res) => {
 
     res.status(200).json({ message: "login successfull", token });
   } catch (error) {
-    console.log(error);
     res.status(500).json({ message: "internal server error" });
   }
 };
