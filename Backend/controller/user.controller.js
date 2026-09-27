@@ -27,9 +27,7 @@ const login = async (req, res) => {
     const { email, password } = req.body;
 
     const user = await User.findOne({ where: { email } });
-
     
-
     const isPassMatch = await bcrypt.compare(password, user.password);
 
     if (!isPassMatch)
@@ -48,7 +46,7 @@ const login = async (req, res) => {
 
     res.status(200).json({ message: "login successfull", token });
   } catch (error) {
-    res.status(500).json({ message: "internal server error" });
+    res.status(500).json({ message: "internal server error" , error });
   }
 };
 
