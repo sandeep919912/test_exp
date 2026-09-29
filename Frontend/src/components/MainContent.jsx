@@ -54,6 +54,7 @@ const MainContent = () => {
     const token = localStorage.getItem("token");
 
     try {
+      console.log("hay re daiya")
       const res = await axios.get(
         `${import.meta.env.VITE_BACKEND_URL}/expense/get-user-expenses`,
         {
