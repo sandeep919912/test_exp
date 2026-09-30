@@ -148,7 +148,7 @@ const MainContent = () => {
       {/*SUMMARY CARDS*/}
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 mb-6">
         {/* TOTAL EXPENSE */}
-        <div className="relative overflow-hidden bg-blue-600 rounded-2xl p-5 sm:p-6 text-white shadow-lg">
+        <div className="relative overflow-hidden bg-red-600 rounded-2xl p-5 sm:p-6 text-white shadow-lg">
           <div className="absolute -right-8 -top-8 w-32 h-32 bg-white/10 rounded-full" />
 
           <div className="relative flex justify-between items-start">
