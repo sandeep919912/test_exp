@@ -12,6 +12,11 @@ const Popup = ({setShowPopup}) => {
       const token = localStorage.getItem("token");
       const response = await axios.get(
         `${import.meta.env.VITE_BACKEND_URL}/leaderboard/get-leaderboard`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
       );
 
       console.log(response.data);

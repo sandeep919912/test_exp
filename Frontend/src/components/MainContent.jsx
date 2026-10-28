@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import AiPopup from "./AiPopup";
+import {useNavigate} from "react-router-dom"
 
 const MainContent = () => {
   const [amount, setAmount] = useState("");
@@ -19,10 +20,16 @@ const MainContent = () => {
     category,
   };
 
+  const navigate = useNavigate()
+
   //Add Expense
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
+    if(!token){
+      alert("Token is Required")
+      navigate("/login")
+    }
     console.log(data);
 
     try {
@@ -54,7 +61,6 @@ const MainContent = () => {
     const token = localStorage.getItem("token");
 
     try {
-      console.log("hay re daiya")
       const res = await axios.get(
         `${import.meta.env.VITE_BACKEND_URL}/expense/get-user-expenses`,
         {
@@ -68,13 +74,16 @@ const MainContent = () => {
         },
       );
 
-      localStorage.setItem("isPremium", true);
+      localStorage.setItem("isPremium", res.data.userWithExpense.isPremium);
 
       setExpenses(res.data.userWithExpense.Expenses);
       setTotalPages(res.data.totalPages);
       setTotalExpenses(res.data.userWithExpense.totalExpenses);
     } catch (error) {
       console.log(error);
+      localStorage.removeItem("token");
+      localStorage.removeItem("isPremium");
+      window.location.href = "/login";
     }
   };
 

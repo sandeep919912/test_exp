@@ -20,6 +20,7 @@ const Signup = () => {
       const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/user/signup` , data)
 
       console.log(res)
+      alert("Account created successfully! Please login to continue.")
     } catch (error) {
       console.log(error)
     }

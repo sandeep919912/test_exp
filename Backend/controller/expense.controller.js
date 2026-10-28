@@ -170,7 +170,7 @@ const uploadToS3 = async (data, filename) => {
     Key: filename,
     Body: data,
     ACL:"public-read",
-    ContentType: "application/pdf"
+    ContentType: "application/txt",
   };
 
   const s3res = await s3Service.upload(params).promise();

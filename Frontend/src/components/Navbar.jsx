@@ -51,6 +51,8 @@ export const Navbar = () => {
         `${import.meta.env.VITE_BACKEND_URL}/payment/verify?orderId=${data.orderId}`,
       );
 
+      localStorage.setItem("isPremium", "true");
+
       if (verifyResponse.data.status === "SUCCESSFUL") {
         alert("Payment successful! You are now a premium user.");
       }
@@ -58,6 +60,7 @@ export const Navbar = () => {
       console.log("Payment verification result:", verifyResponse.data);
     } catch (error) {
       console.log(error);
+      localStorage.setItem("isPremium", "false");
     }
   };
 
@@ -68,7 +71,7 @@ export const Navbar = () => {
   const checkPremium = () => {
     const isPremium = localStorage.getItem("isPremium");
 
-    if (isPremium) {
+    if (isPremium === "true") {
       setPremium(true);
     }
   };
@@ -76,7 +79,7 @@ export const Navbar = () => {
   useEffect(() => {
     checkLogin();
     checkPremium();
-  }, []);
+  }, [token]);
 
   const handleDownload = async () => {
     try {
