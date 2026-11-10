@@ -17,7 +17,7 @@ const Footer = () => {
           },
         },
       );
-
+      console.log("Download history fetched successfully");
       console.log(res.data);
       setDownloads(res.data);
       setShowDownloads(!showDownloads);
